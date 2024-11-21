@@ -1,0 +1,80 @@
+{% extends "main.html" %}
+{% load static %}
+{% block title %}
+  <title>TODO</title>
+{% endblock title %}
+{% block content %}
+<header>
+
+
+  <div class="head">
+      <div class="logo_details">
+          <i class="fa-solid fa-rectangle-list logo_icon"></i>
+          <a style="text-decoration: none;" href="{% url 'home' %}"><h2 class="logo">TODO</h2></a>
+      </div>
+      <div class="user_name">
+        <h1 style="padding-top: 6px; font-size: 24px;">Welcome {% if username %}'{{ username }}' {% else %} GUEST {% endif %}</h1>
+      </div>
+      <div class="link_buttons">
+        <a href="{% url 'logout' %}"> <button style="padding-top: 2px;" class="btn btn-danger">LOGOUT</button></a>
+      </div>
+      
+      
+      
+  </div>
+</header>
+  <div class="index_middle">
+    <img class="todo_back" src="{% static 'images/main.jpg' %}" alt="">
+    <div class="todo_middle">
+      <div class="todo_middle_heading">
+        <h1>TODO APP</h1>
+      </div>
+      <hr style="color: black;">
+      <form method="post" id="todo_form">{% csrf_token %}
+        <div style="display: flex; justify-content: center; gap: 14px;">
+          <input style="width: 274px; border-radius: 7px; padding-left: 2px;" type="text" name="task" id="todo" placeholder="Enter Your Task Here">
+          <button type="submit" class=" btn btn-success">ADD TASK</button>
+        </div>
+        
+      </form>
+      <!-- <hr> -->
+      
+      <table class="todo_table">
+        <thead>
+          <tr>
+            <th style="color: red;;" scope="col">Todo Item</th>
+            <th style="color: red;;" scope="col">Status</th>
+            <th style="color: red;;" scope="col">Actions</th>
+          </tr>
+        </thead>
+        
+        <tbody>
+          
+          <tr>
+            {% for task in todos  %}
+            <td  style="color: black;">{{ task.todo_name }}</td>
+           
+            {% if task.status %}
+            <td style="color: black;">Completed</td>
+            {% else %}
+            <td style="color: black;">In Progress</td>
+            {% endif %}
+            
+            <td>
+              <a href="{% url 'delete' task.todo_name %}"><button class="btn btn-danger" type="submit">Delete</button></a>
+              <a href="{% url 'update' task.todo_name %}"><button class="btn btn-success" type="submit">Finished</button></a>
+            </td>
+           
+          </tr>
+          {% endfor %}
+        </tbody>        
+      </table>
+    </div>
+  </div>
+  
+
+
+  <script src="{% static 'js/index.js' %}">
+
+  </script>
+{% endblock content %}

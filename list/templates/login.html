@@ -1,0 +1,52 @@
+{% extends "main.html" %}
+{% load static %}
+
+{% block title %}
+  <title>Login</title>
+{% endblock title %}
+
+{% block css %}
+  <link rel="stylesheet" href="{% static 'css/login.css'%}">
+{% endblock css %}
+
+{% block content %}
+<header>
+  <div class="head">
+      <div class="logo_details">
+          <i class="fa-solid fa-rectangle-list logo_icon"></i>
+          <a style="text-decoration: none;" href="{% url 'home' %}"><h2 class="logo">TODO</h2></a>
+      </div>
+      
+      <div class="link_buttons">
+          <button class="link_btn"><a href="{% url 'login' %}">LOGIN</a></button>
+          <button class="link_btn"><a href="{% url 'register' %}">REGISTER</a></button>
+      </div>
+      
+  </div>
+</header>
+  <div class="login_back">
+    <img class="login_image" src="{% static 'images/login_back.webp'%}" alt="">
+    <form id="login_form" method="post">{% csrf_token %}
+      {% if messages %}
+    <div class="alert alert-primary" role="alert">
+      {% for message in messages %}
+      {{ message }}
+      {% endfor %}
+    </div>
+    {% endif %}
+      <div class="mb-3">
+        <label for="exampleInputEmail1" class="form-label" style="color: white;">Enter Username</label>
+        <input type="text" class="form-control" name="username" id="exampleInputEmail1" aria-describedby="emailHelp">
+      </div>
+      <div class="mb-3">
+        <label for="exampleInputPassword1" class="form-label" style="color: white;">Enter Password</label>
+        <input type="password" name="password" class="form-control" id="exampleInputPassword1">
+      </div>
+      <div class="mb-3 form-check">
+        <input type="checkbox" class="form-check-input" id="exampleCheck1">
+        <label class="form-check-label" for="exampleCheck1">Check me out</label>
+      </div>
+      <button type="submit" class="btn btn-primary">Submit</button>
+  </form>
+  </div>
+{% endblock content %}

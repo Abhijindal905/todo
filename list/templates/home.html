@@ -1,0 +1,59 @@
+{% extends "main.html" %}
+{% load static %}
+
+
+{% block title %}
+  <title>HOME</title>
+{% endblock title %}
+
+
+
+
+
+{% block content %}
+    <header>
+        <div class="head">
+            <div class="logo_details">
+                <i class="fa-solid fa-rectangle-list logo_icon"></i>
+                <a style="text-decoration: none;" href="{% url 'home' %}"><h2 class="logo">TODO</h2></a>
+            </div>
+            
+            <div class="link_buttons">
+                <button class="link_btn"><a href="{% url 'login' %}">LOGIN</a></button>
+                <button class="link_btn"><a href="{% url 'register' %}">REGISTER</a></button>
+            </div>
+            
+        </div>
+    </header>
+    <div class="todo_title">
+        <h1>TODO WEB APPLICATION</h1>
+    </div>
+    <div class="middle">
+        
+        
+        <img class="back_image" src="{% static 'images/home_back.avif' %}" alt="">
+        
+            <h1 class="todo_details">
+                1.Task Management: <br>
+                - Add tasks with titles and optional descriptions. <br>
+                - Mark tasks as completed. <br>
+                - Edit or delete tasks as needed. <br>
+    
+                2.Task Organization: <br>
+                - Categorize tasks into lists or groups. <br>
+                - Sort tasks by priority, due date, or creation date. <br>
+                - User Authentication (Optional): <br>            
+                - Secure login and registration for personalized task lists. <br>
+                - Option to store data locally or in the cloud. <br>
+                - Responsive Design: <br>
+                - Adaptable interface for desktops, tablets, and mobile devices. <br>
+    
+                3. Search and Filter: <br>
+                - Quickly find tasks using search or filter by status (e.g., completed or pending). <br>
+                - Notifications (Optional): <br>
+                - Reminders for due dates or overdue tasks. <br></h1>
+        </div>
+        
+
+  
+{% endblock content %}
